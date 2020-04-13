@@ -8,7 +8,7 @@ const Header = (props) => {
 
   return (
     <div>
-      <Navbar color="faded" light>
+      <Navbar fixed="top" color="light" light>
         <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
