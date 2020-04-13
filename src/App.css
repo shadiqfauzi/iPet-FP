@@ -36,3 +36,26 @@
     transform: rotate(360deg);
   }
 }
+
+.Parallax{
+  background-image: url('./Public/Assets/bg1.jpg');
+  width: 100%;
+  height: 600px;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.content{
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  /* z-index: 2; */
+  background-color: whitesmoke;
+}
+
+h1{
+  text-align: center;
+}
