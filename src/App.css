@@ -59,3 +59,21 @@
 h1{
   text-align: center;
 }
+
+.img-placeholder{
+  background-image: url('./Public/Assets/cat1.jpg');
+  /* Cari cara biar image gak bikin page ada scroll untuk various screen sizes (cek alternatif body selain ditambah padding) */
+  height: 94.2vh;
+  width: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.auth-form{
+  padding-top: 8rem;
+}
+
+.auth-button{
+  height: 50px;
+}
