@@ -5,6 +5,8 @@ import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reac
 const Header = (props) => {
   const [collapsed, setCollapsed] = useState(true);
 
+  const toggleBrand = () => setCollapsed(true)
+
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   const toggleBrand = () => setCollapsed(true)
