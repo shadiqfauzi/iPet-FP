@@ -9,8 +9,6 @@ const Header = (props) => {
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
-  const toggleBrand = () => setCollapsed(true)
-
   return (
     <div>
       <Navbar fixed="top" color="light" light>
