@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, toogleBrand } from 'reactstrap';
+import { } from 'react-router-dom' 
 
 const Header = (props) => {
   const [collapsed, setCollapsed] = useState(true);
+
+  const toggleBrand = () => setCollapsed(true)
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
   return (
     <div>
       <Navbar fixed="top" color="light" light>
-        <NavbarBrand href="/" className="mr-auto">reactstrap</NavbarBrand>
+        <NavbarBrand onClick={toggleBrand} className="mr-auto nav" tag={Link} to={'/'}>iPet</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
