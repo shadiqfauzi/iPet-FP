@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink, toogleBrand } from 'reactstrap';
-import { } from 'react-router-dom' 
+import { Link } from 'react-router-dom'
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
 
 const Header = (props) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -9,19 +9,25 @@ const Header = (props) => {
 
   const toggleNavbar = () => setCollapsed(!collapsed);
 
+  const toggleBrand = () => setCollapsed(true)
+
   return (
     <div>
       <Navbar fixed="top" color="light" light>
-        <NavbarBrand onClick={toggleBrand} className="mr-auto nav" tag={Link} to={'/'}>iPet</NavbarBrand>
+        <NavbarBrand onClick={toggleBrand} className="mr-auto" tag={Link} to={'/'}>iPet</NavbarBrand>
         <NavbarToggler onClick={toggleNavbar} className="mr-2" />
         <Collapse isOpen={!collapsed} navbar>
           <Nav navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
+            <Link onClick={toggleNavbar} to="/login">
+              <NavItem style={{'color': 'black'}}>
+                Login
+              </NavItem>
+            </Link>
+            <Link onClick={toggleNavbar} to="/register">
+              <NavItem>
+                Register
+              </NavItem>
+            </Link>
           </Nav>
         </Collapse>
       </Navbar>
