@@ -2,7 +2,7 @@ import React from 'react';
 // import logo from './logo.svg';
 import './App.css';
 import { Route, Switch } from 'react-router-dom'
-import Home from './Pages/Home'
+import LandingPage from './Pages/LandingPage'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
 import Header from './Components/Header'
@@ -13,7 +13,7 @@ function App() {
     <div>
         <Header/>
         <Switch>
-          <Route path='/' component={Home} exact />
+          <Route path='/' component={LandingPage} exact />
           <Route path='/login' component={Login} />
           <Route path='/register' component={Register} />
         </Switch>

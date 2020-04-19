@@ -4,7 +4,7 @@ import {
     CardTitle, CardSubtitle
   } from 'reactstrap';
 
-class Home extends Component{
+class LandingPage extends Component{
     state = {}
     
    render(){
@@ -124,4 +124,4 @@ class Home extends Component{
    }
 }
 
-export default Home
+export default LandingPage
