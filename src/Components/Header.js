@@ -1,31 +1,66 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem } from 'reactstrap';
+import {Link} from 'react-router-dom'
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
+} from 'reactstrap';
 
 const Header = (props) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggleBrand = () => setCollapsed(true)
-
-  const toggleNavbar = () => setCollapsed(!collapsed);
+  const toggle = () => setIsOpen(!isOpen);
 
   return (
     <div>
-      <Navbar fixed="top" color="light" light>
-        <NavbarBrand onClick={toggleBrand} className="mr-auto" tag={Link} to={'/'}>iPet</NavbarBrand>
-        <NavbarToggler onClick={toggleNavbar} className="mr-2" />
-        <Collapse isOpen={!collapsed} navbar>
-          <Nav navbar>
-            <Link onClick={toggleNavbar} to="/login">
-              <NavItem style={{'color': 'black'}}>
-                Login
-              </NavItem>
-            </Link>
-            <Link onClick={toggleNavbar} to="/register">
+      <Navbar color="light" light expand="md" fixed='top'>
+        <NavbarBrand href="/" className='navbar' style={{marginLeft: '5%', fontSize:'150%', marginRight: '56%'}}><strong>iPet</strong></NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <Link to='/'>
               <NavItem>
-                Register
+                <NavLink>Home</NavLink>
               </NavItem>
             </Link>
+            <NavItem>
+              <NavLink>About</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>Service</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink>Contact</NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                User
+              </DropdownToggle>
+              <DropdownMenu right>
+                <Link to='/login'>
+                <DropdownItem>
+                   Login
+                </DropdownItem>
+                </Link>
+                <Link to='/register'>
+                <DropdownItem>
+                  Register
+                </DropdownItem>
+                </Link>
+                <DropdownItem divider />
+                <DropdownItem>
+                  Reset
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
           </Nav>
         </Collapse>
       </Navbar>
