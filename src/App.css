@@ -1,167 +1,165 @@
 .App {
-  text-align: center;
+    text-align: center;
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+    height: 40vmin;
+    pointer-events: none;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
 }
 
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
 }
 
 .App-link {
-  color: #61dafb;
+    color: #61dafb;
 }
 
 @keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
-.Parallax{
-  background-image: url('./Public/Assets/bg1.jpg');
-  width: 100%;
-  height: 100vh;
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.Parallax {
+    background-image: url('./Public/Assets/bg1.jpg');
+    width: 100%;
+    height: 100vh;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.content{
-  display: block;
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  background-color: whitesmoke;
+.content {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-color: whitesmoke;
 }
 
-.content2{
-  width: 100%;
-  height: 80vh;
+.content2 {
+    width: 100%;
+    height: 80vh;
 }
 
-h1{
-  text-align: center;
+h1 {
+    text-align: center;
 }
 
-.img-placeholder{
-  background-image: url('./Public/Assets/cat1.jpg');
-  /* Cari cara biar image gak bikin page ada scroll untuk various screen sizes (cek alternatif body selain ditambah padding) */
-  height: 94.2vh;
-  width: 100%;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+.img-placeholder {
+    background-image: url('./Public/Assets/cat1.jpg');
+    /* Cari cara biar image gak bikin page ada scroll untuk various screen sizes (cek alternatif body selain ditambah padding) */
+    height: 94.2vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.auth-form{
-  padding-top: 8rem;
+.auth-form {
+    padding-top: 8rem;
 }
 
-.auth-button{
-  height: 50px;
+.auth-button {
+    height: 50px;
 }
 
-.nav{
-  margin: 0 0 30px;
-  font-weight: 700;
-  font-size: 20px;
+.nav {
+    margin: 0 0 30px;
+    font-weight: 700;
+    font-size: 20px;
 }
 
-.slogan{
-  color: white;
-  padding: 20% 0 0 0;
-  font-size: 60px;
-  text-shadow: -1px 0 1px #000;
-  font-weight: 700;
+.slogan {
+    color: white;
+    padding: 20% 0 0 0;
+    font-size: 60px;
+    text-shadow: -1px 0 1px #000;
+    font-weight: 700;
 }
 
-.slogan2{
-  color: white;
-  padding: 0 0 0 0;
-  text-align: center;
-  text-shadow: -1px 0 1px #000;
-  font-weight: 700;
+.slogan2 {
+    color: white;
+    padding: 0 0 0 0;
+    text-align: center;
+    text-shadow: -1px 0 1px #000;
+    font-weight: 700;
 }
 
-.buleud{
-  cursor : pointer;
-  text-align : center;
-  margin : 0 auto;
-  border: 1.5px solid white;
-  border-radius: 100%;
-  padding-top: 15px;
-  padding-left : 15px;
-  padding-right : 15px;
-  width : 5%;
-  height : 10%;
-  margin: 0 auto;
-  transition: 0.5s;
+.buleud {
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+    border: 1.5px solid white;
+    border-radius: 100%;
+    padding-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 5%;
+    height: 10%;
+    margin: 0 auto;
+    transition: 0.5s;
 }
 
-.buleud:hover{
-  transform: scale(1.05);
-
+.buleud:hover {
+    transform: scale(1.05);
 }
 
-.AbUs{
-  font-size: 40px;
-  font-weight: 800;
-  padding: 5% 0 0 0;
-  color: grey;
+.AbUs {
+    font-size: 40px;
+    font-weight: 800;
+    padding: 5% 0 0 0;
+    color: grey;
 }
 
-.arrow{
-  text-align: center;
+.arrow {
+    text-align: center;
 }
 
-.x1{
-  border: 0.4px solid rgb(184, 176, 176);
-  padding-left : 15px;
-  padding-right : 15px;
-  /* margin-bottom: 60px; */
-  width : 12%;
-  margin: 0 auto;
-  /* text-align: center; */
+.x1 {
+    border: 0.4px solid rgb(184, 176, 176);
+    padding-left: 15px;
+    padding-right: 15px;
+    /* margin-bottom: 60px; */
+    width: 12%;
+    margin: 0 auto;
+    /* text-align: center; */
 }
 
-.card{
-  transition: 0.5s;
-  cursor: pointer;
+.card {
+    transition: 0.5s;
+    cursor: pointer;
 }
 
-.card:hover{
-  transform: scale(1.05);
-  box-shadow: 10px 10px 15px rgba(0,0,0,0.3);
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
 }
 
-.title{
-  color: grey;
-  font-size: 20px;
-  font-weight : 800;
+.title {
+    color: grey;
+    font-size: 20px;
+    font-weight: 800;
 }
 
-.footer{
-  background-color: #F5F5F5;
+.footer {
+    background-color: #f5f5f5;
 }
-
