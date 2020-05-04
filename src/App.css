@@ -163,3 +163,7 @@ h1 {
 .footer {
     background-color: #f5f5f5;
 }
+
+.form-group .custom-file{
+  z-index: 0;
+}
