@@ -165,3 +165,6 @@ h1{
   background-color: #F5F5F5;
 }
 
+.form-group .custom-file{
+  z-index: 0;
+}
