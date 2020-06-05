@@ -167,3 +167,10 @@ h1 {
 .form-group .custom-file{
   z-index: 0;
 }
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators .active,
+.carousel-indicators li   {
+    filter: invert(100%);
+}

@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     data: [],
-    categoryList: [],
+	categoryList: [],
+	totalActiveProducts: 0,
 	loading: false,
 	status: '',
 	message: '',
@@ -16,8 +17,13 @@ export const manageProductReducer = (state = INITIAL_STATE, action) => {
 		case 'FETCH_PRODUCTS':
 			return {
 				...state,
-                data: action.payload.results,
-                categoryList: action.payload.categoryList
+				data: action.payload.results,
+				totalActiveProducts: action.payload.totalActiveProducts
+			}
+		case 'FETCH_CATEGORY':
+			return{
+				...state,
+				categoryList: action.payload.data
 			}
 		case 'API_MANAGE_PRODUCT_SUCCESS':
 			return {

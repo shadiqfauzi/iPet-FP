@@ -9,8 +9,9 @@ import Footer from './Components/Footer'
 import LandingPage from './Pages/LandingPage'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
-import ManageProductPage from './Pages/ManageProductPage'
-import AddProductPage from './Pages/AddProductPage'
+import ManageProductPage from './Pages/ManageProduct/ManageProductPage'
+import AddProductPage from './Pages/ManageProduct/AddProductPage'
+import EditProductPage from './Pages/ManageProduct/EditProductPage'
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				<Route path='/register' component={Register} />
 				<Route path='/manage-product' component={ManageProductPage} />
 				<Route path='/add-product' component={AddProductPage} />
+				<Route path='/edit-product/:id' component={EditProductPage} />
 			</Switch>
 			<Footer />
 		</div>
