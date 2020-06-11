@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import { API_URL } from '../../Support/API_URL'
 
-export const FetchManageProductData = (search, minPrice, maxPrice, category, sortBy) => {
+export const FetchManageProductData = (currentPage, search, minPrice, maxPrice, category, sortBy) => {
 	return async (dispatch) => {
 		await dispatch(FetchCategory())
 		dispatch({
@@ -9,7 +9,7 @@ export const FetchManageProductData = (search, minPrice, maxPrice, category, sor
 		})
 		try {
 			let url = `${API_URL}/manage-product`
-			if (search || minPrice || maxPrice || sortBy) {
+			if (search || minPrice || maxPrice || sortBy || category || currentPage + 1) {
 				url += `?`
 				if (search) url += `search=${search}`
 				if (search && minPrice) url += `&`
@@ -18,24 +18,13 @@ export const FetchManageProductData = (search, minPrice, maxPrice, category, sor
 				if (maxPrice) url += `maxPrice=${parseInt(maxPrice)}`
 				if ((search && sortBy) || (minPrice && sortBy) || (maxPrice && sortBy)) url += `&`
 				if (sortBy) url += `sortBy=${encodeURI(sortBy)}`
+				if ((search && category) || (minPrice && category) || (maxPrice && category) || (sortBy && category)) url += `&`
+				if (category) url += `category=${encodeURIComponent(JSON.stringify(category))}&`
+				if (search || minPrice || maxPrice || sortBy) url += `&`
+				url += `offset=${currentPage * 5}`
 			}
 			let res = await Axios.get(url)
 			let { data, message, status } = res.data
-			if (category) {
-				let filtered = data.results
-				category.forEach((cat) => {
-					filtered = filtered.filter((filter) => {
-						let condition = false
-						filter.category.forEach((datcat) => {
-							if (cat.label === datcat.category) {
-								condition = true
-							}
-						})
-						return condition
-					})
-				})
-				data.results = filtered
-			}
 			dispatch({
 				type: 'FETCH_PRODUCTS',
 				payload: data,

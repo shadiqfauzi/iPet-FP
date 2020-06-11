@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-	Button,
-	Modal,
-	ModalHeader,
-	ModalBody,
-	ModalFooter,
-	Container,
-} from 'reactstrap'
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Container } from 'reactstrap'
 
 const CustomModal = (props) => {
 	const { className, toggle, modal, oneButton } = props

@@ -1,10 +1,5 @@
 import React, { useState } from 'react'
-import {
-	Carousel,
-	CarouselItem,
-	CarouselControl,
-	CarouselIndicators,
-} from 'reactstrap'
+import { Carousel, CarouselItem, CarouselControl, CarouselIndicators } from 'reactstrap'
 
 const CustomCarousel = (props) => {
 	const items = props.images
@@ -31,22 +26,14 @@ const CustomCarousel = (props) => {
 
 	const slides = items.map((item) => {
 		return (
-			<CarouselItem
-				onExiting={() => setAnimating(true)}
-				onExited={() => setAnimating(false)}
-				key={item.src}
-			>
+			<CarouselItem onExiting={() => setAnimating(true)} onExited={() => setAnimating(false)} key={item.src}>
 				<div
 					style={{
 						width: '200px',
-                        height: '150px',
+						height: '150px',
 					}}
 				>
-					<img
-						style={{ width: '100%', height:'100%', objectFit: 'contain'}}
-						src={item.src}
-						alt='Product Images'
-					/>
+					<img style={{ width: '100%', height: '100%', objectFit: 'contain' }} src={item.src} alt='Product Images' />
 				</div>
 			</CarouselItem>
 		)
@@ -55,22 +42,10 @@ const CustomCarousel = (props) => {
 	return (
 		<div style={{ width: '200px' }}>
 			<Carousel activeIndex={activeIndex} next={next} previous={previous}>
-				<CarouselIndicators
-					items={items}
-					activeIndex={activeIndex}
-					onClickHandler={goToIndex}
-				/>
+				<CarouselIndicators items={items} activeIndex={activeIndex} onClickHandler={goToIndex} />
 				{slides}
-				<CarouselControl
-					direction='prev'
-					directionText='Previous'
-					onClickHandler={previous}
-				/>
-				<CarouselControl
-					direction='next'
-					directionText='Next'
-					onClickHandler={next}
-				/>
+				<CarouselControl direction='prev' directionText='Previous' onClickHandler={previous} />
+				<CarouselControl direction='next' directionText='Next' onClickHandler={next} />
 			</Carousel>
 		</div>
 	)

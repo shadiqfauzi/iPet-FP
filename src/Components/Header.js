@@ -65,9 +65,6 @@ const Header = (props) => {
 								<Link to='/manage-product'>
 									<DropdownItem>Manage Product</DropdownItem>
 								</Link>
-								<Link to='/add-product'>
-									<DropdownItem>Add Product</DropdownItem>
-								</Link>
 								<DropdownItem divider />
 								<DropdownItem>Reset</DropdownItem>
 							</DropdownMenu>
