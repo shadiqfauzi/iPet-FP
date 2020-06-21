@@ -5,7 +5,7 @@ import { Container } from 'reactstrap'
 const CustomLoader = () => {
 	const styles = {
 		container: {
-			paddingTop: '20px',
+			paddingTop: '35vh',
 			display: 'flex',
 			justifyContent: 'center',
 		},
@@ -13,7 +13,7 @@ const CustomLoader = () => {
 
 	return (
 		<Container style={styles.container}>
-			<Loader type='Puff' color='#000' height={100} width={100} />
+			<Loader type='Puff' color='#BEE5EB' height={100} width={100} />
 		</Container>
 	)
 }

@@ -52,6 +52,20 @@ const EditProductForm = (props) => {
 				/>
 			</FormGroup>
 			<FormGroup>
+				<Label for='productDescription'>Product Description</Label>
+				<textarea
+					maxLength='2000'
+					name='productDescription'
+					id='productDescription'
+					placeholder='Product Description'
+					onChange={handleInput}
+					value={userInput.productDescription}
+					required
+					className='form-control'
+					rows='5'
+				/>
+			</FormGroup>
+			<FormGroup>
 				<Label for='price'>Price</Label>
 				<InputGroup size='m'>
 					<InputGroupAddon addonType='prepend'>Rp.</InputGroupAddon>

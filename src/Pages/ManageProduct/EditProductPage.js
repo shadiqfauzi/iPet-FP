@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { Container, Label, Input } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import Axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useParams } from 'react-router-dom'
 
 import { FetchCategory, AddNewCategory, EditProduct } from '../../Redux/Action'
 import CustomModal from '../../Components/ManageProduct/CustomModal'
@@ -12,6 +12,8 @@ import CustomCarousel from '../../Components/ManageProduct/CustomCarousel'
 import EditProductForm from '../../Components/ManageProduct/EditProductForm'
 
 const EditProductPage = (props) => {
+	const { id } = useParams()
+
 	const [productTitle, setProductTitle] = useState('')
 	const [selectedCategory, setSelectedCategory] = useState(null)
 	const [isCategoryNotValid, setIsCategoryNotValid] = useState(false)
@@ -21,6 +23,7 @@ const EditProductPage = (props) => {
 		appStock: '',
 		invStock: '',
 		newCategory: '',
+		productDescription: '',
 	})
 	const [currentImages, setCurrentImages] = useState([])
 	const [imagePreviewArr, setImagePreviewArr] = useState([])
@@ -98,14 +101,15 @@ const EditProductPage = (props) => {
 
 	const fetchOneProduct = useCallback(async () => {
 		try {
-			let res = await Axios.get(`${API_URL}/manage-product/one-product/${props.match.params.id}`)
-			const { productName, price, images, category, appStock, invStock } = res.data.data
+			let res = await Axios.get(`${API_URL}/manage-product/one-product/${id}`)
+			const { productName, price, images, category, appStock, invStock, productDescription } = res.data.data
 			setUserInput((prevState) => ({
 				...prevState,
 				productName,
 				price,
 				appStock,
 				invStock,
+				productDescription,
 			}))
 			let selected = category.map((val) => ({
 				value: val.categoryId,
@@ -117,13 +121,14 @@ const EditProductPage = (props) => {
 		} catch (err) {
 			window.alert(err)
 		}
-	}, [props.match.params.id])
+	}, [id])
 
 	useEffect(() => {
 		fetchOneProduct()
 	}, [fetchOneProduct])
 
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		dispatch(FetchCategory())
 	}, [dispatch])
 
@@ -205,37 +210,40 @@ const EditProductPage = (props) => {
 		formData.append('price', parseInt(userInput.price))
 		formData.append('invStock', parseInt(userInput.invStock))
 		formData.append('appStock', parseInt(userInput.appStock))
-		selectedCategory.forEach((selected, index) => {
+		formData.append('productDescription', userInput.productDescription)
+		for (const [index, selected] of selectedCategory.entries()) {
 			formData.append(`category${index + 1}`, parseInt(selected.value))
-		})
+		}
 		for (var i = 0; i < deleteImageArr.length; i++) {
 			formData.append('deleteImageArr', deleteImageArr[i])
 		}
-		dispatch(EditProduct(formData, props.match.params.id))
+		dispatch(EditProduct(formData, id))
 		toggleModalConfirm()
 		setFinishEdit(true)
 	}
 
+	console.log(userInput.productDescription)
+
 	if (loading) return <CustomLoader />
-	if (finishEdit) return <Redirect to='/manage-product' />
+	if (finishEdit) return <Redirect to='/admin/manage-product?edit-success=1' />
 	return (
 		<React.Fragment>
 			<Container>
 				<h3 className='text-center mt-5'>Edit {productTitle}</h3>
 				<EditProductForm
-				toggleModalConfirm={toggleModalConfirm}
-				handleInput={handleInput}
-				userInput={userInput}
-				categoryList={categoryList}
-				handleSelectCategory={handleSelectCategory}
-				selectedCategory={selectedCategory}
-				toggleModalCategory={toggleModalCategory}
-				isCategoryNotValid={isCategoryNotValid}
-				handleImage={handleImage}
-				currentImages={currentImages}
-				image={image}
-				toggleDelete={toggleDelete}
-				cancelImage={cancelImage}
+					toggleModalConfirm={toggleModalConfirm}
+					handleInput={handleInput}
+					userInput={userInput}
+					categoryList={categoryList}
+					handleSelectCategory={handleSelectCategory}
+					selectedCategory={selectedCategory}
+					toggleModalCategory={toggleModalCategory}
+					isCategoryNotValid={isCategoryNotValid}
+					handleImage={handleImage}
+					currentImages={currentImages}
+					image={image}
+					toggleDelete={toggleDelete}
+					cancelImage={cancelImage}
 				/>
 			</Container>
 			<CustomModal
@@ -273,6 +281,9 @@ const EditProductPage = (props) => {
 				<hr />
 				<p>
 					<strong>Product Name:</strong> {userInput.productName}
+				</p>
+				<p>
+					<strong>Product Description:</strong> {userInput.productDescription}
 				</p>
 				<p>
 					<strong>Price:</strong> {userInput.price}

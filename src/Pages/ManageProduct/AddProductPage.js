@@ -17,6 +17,7 @@ const AddProductPage = (props) => {
 		price: '',
 		stock: '',
 		newCategory: '',
+		productDescription: '',
 	})
 	const [isCategoryNotValid, setIsCategoryNotValid] = useState(false)
 	const [imagePreviewArr, setImagePreviewArr] = useState([])
@@ -28,6 +29,7 @@ const AddProductPage = (props) => {
 		image4: new ImageState(),
 		image5: new ImageState(),
 	})
+	const [finishAdd, setFinishAdd] = useState(false)
 
 	const [modalCategory, setModalCategory] = useState(false)
 	const toggleModalCategory = () => setModalCategory(!modalCategory)
@@ -116,10 +118,12 @@ const AddProductPage = (props) => {
 		formData.append('price', userInput.price)
 		formData.append('invStock', userInput.stock)
 		formData.append('appStock', userInput.stock)
-		selectedCategory.forEach((selected, index) => {
+		formData.append('productDescription', userInput.productDescription)
+		for (const [index, selected] of selectedCategory.entries()) {
 			formData.append(`category${index + 1}`, selected.value)
-		})
+		}
 		dispatch(AddProduct(formData))
+		setFinishAdd(true)
 	}
 
 	const addCategory = () => {
@@ -127,89 +131,102 @@ const AddProductPage = (props) => {
 	}
 
 	useEffect(() => {
+		window.scrollTo(0, 0)
 		dispatch(FetchCategory())
 	}, [dispatch])
 
 	const categoryList = useSelector((state) => state.manageProduct.categoryList)
 	const loading = useSelector((state) => state.manageProduct.loading)
-	const message = useSelector((state) => state.manageProduct.message)
+	// const addSuccess = useSelector((state) => state.manageProduct.addSuccess)
 
 	if (loading) {
 		return <CustomLoader />
-	}
-	if (message === 'Successfully added new product') {
+	} else if (finishAdd) {
 		if (modalConfirm === true) {
 			setModalConfirm(false)
 		}
-		return <Redirect to={{ pathname: '/manage-product', state: { alert: message } }} />
+		return <Redirect to='/admin/manage-product?add-success=1' />
+	} else {
+		return (
+			<React.Fragment>
+				<Container>
+					<h3 className='text-center mt-5'>Add Product</h3>
+					<AddProductForm
+						toggleModalConfirm={toggleModalConfirm}
+						handleInput={handleInput}
+						userInput={userInput}
+						categoryList={categoryList}
+						handleSelectCategory={handleSelectCategory}
+						selectedCategory={selectedCategory}
+						toggleModalCategory={toggleModalCategory}
+						isCategoryNotValid={isCategoryNotValid}
+						handleImage={handleImage}
+						image={image}
+						cancelImage={cancelImage}
+					/>
+				</Container>
+				<CustomModal
+					toggle={toggleModalCategory}
+					modal={modalCategory}
+					title='Add New Category'
+					onConfirm={() => {
+						toggleModalCategory()
+						addCategory()
+					}}
+					confirmLabel='Add'
+				>
+					<Label for='newCategory'>New Category</Label>
+					<Input
+						type='text'
+						name='newCategory'
+						id='newCategory'
+						placeholder='Category'
+						onChange={handleInput}
+						value={userInput.newCategory}
+					/>
+				</CustomModal>
+				<CustomModal
+					toggle={toggleModalConfirm}
+					modal={modalConfirm}
+					title='Confirm Add New Product'
+					onConfirm={() => {
+						addProduct()
+					}}
+					confirmLabel='Add'
+				>
+					{toggleModalConfirm ? (
+						<div
+							style={{
+								display: 'flex',
+								justifyContent: 'center',
+							}}
+						>
+							<CustomCarousel ride={false} interval={false} images={imagePreviewArr} />
+						</div>
+					) : null}
+					<hr />
+					<p>
+						<strong>Product Name:</strong> {userInput.productName}
+					</p>
+					<p>
+						<strong>Product Description:</strong> {userInput.productDescription}
+					</p>
+					<p>
+						<strong>Price:</strong> {userInput.price}
+					</p>
+					<p>
+						<strong>Category:</strong>{' '}
+						{selectedCategory
+							? selectedCategory.map((val, i) => (selectedCategory.length - 1 !== i ? val.label + ', ' : val.label))
+							: null}
+					</p>
+					<p>
+						<strong>Stock:</strong> {userInput.stock}
+					</p>
+				</CustomModal>
+			</React.Fragment>
+		)
 	}
-	return (
-		<React.Fragment>
-			<Container>
-				<h3 className='text-center mt-5'>Add Product</h3>
-				<AddProductForm
-					toggleModalConfirm={toggleModalConfirm}
-					handleInput={handleInput}
-					userInput={userInput}
-					categoryList={categoryList}
-					handleSelectCategory={handleSelectCategory}
-					selectedCategory={selectedCategory}
-					toggleModalCategory={toggleModalCategory}
-					isCategoryNotValid={isCategoryNotValid}
-					handleImage={handleImage}
-					image={image}
-					cancelImage={cancelImage}
-				/>
-			</Container>
-			<CustomModal
-				toggle={toggleModalCategory}
-				modal={modalCategory}
-				title='Add New Category'
-				onConfirm={() => {
-					toggleModalCategory()
-					addCategory()
-				}}
-				confirmLabel='Add'
-			>
-				<Label for='newCategory'>New Category</Label>
-				<Input type='text' name='newCategory' id='newCategory' placeholder='Category' onChange={handleInput} value={userInput.newCategory} />
-			</CustomModal>
-			<CustomModal
-				toggle={toggleModalConfirm}
-				modal={modalConfirm}
-				title='Confirm Add New Product'
-				onConfirm={() => {
-					addProduct()
-				}}
-				confirmLabel='Add'
-			>
-				{toggleModalConfirm ? (
-					<div
-						style={{
-							display: 'flex',
-							justifyContent: 'center',
-						}}
-					>
-						<CustomCarousel ride={false} interval={false} images={imagePreviewArr} />
-					</div>
-				) : null}
-				<hr />
-				<p>
-					<strong>Product Name:</strong> {userInput.productName}
-				</p>
-				<p>
-					<strong>Price:</strong> {userInput.price}
-				</p>
-				<p>
-					<strong>Category:</strong>{' '}
-					{selectedCategory ? selectedCategory.map((val, i) => (selectedCategory.length - 1 !== i ? val.label + ', ' : val.label)) : null}
-				</p>
-				<p>
-					<strong>Stock:</strong> {userInput.stock}
-				</p>
-			</CustomModal>
-		</React.Fragment>
-	)
 }
 
 export default AddProductPage

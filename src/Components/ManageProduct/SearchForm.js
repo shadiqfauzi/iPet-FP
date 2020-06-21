@@ -135,7 +135,7 @@ const SearchForm = (props) => {
 				</Form>
 			</div>
 			<div className='d-flex col-2 align-items-center'>
-				<Link to='/add-product'>
+				<Link to='/admin/manage-product/add'>
 					<Button>Add New Product</Button>
 				</Link>
 			</div>

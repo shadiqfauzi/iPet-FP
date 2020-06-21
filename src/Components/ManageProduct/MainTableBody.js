@@ -11,7 +11,7 @@ const MainTableBody = (props) => {
 		<tr key={e.productId}>
 			<td>{e.productId}</td>
 			<td>{e.productName}</td>
-			<td>{e.price}</td>
+			<td>Rp.{e.price.toLocaleString('id-ID')},00</td>
 			<td>{e.invStock}</td>
 			<td>{e.appStock}</td>
 			<td>{e.views}</td>
@@ -32,7 +32,7 @@ const MainTableBody = (props) => {
 				))}
 			</td>
 			<td>
-				<Link to={`/edit-product/${e.productId}`}>
+				<Link to={`/admin/manage-product/edit/${e.productId}`}>
 					<Button>Edit</Button>
 				</Link>
 			</td>

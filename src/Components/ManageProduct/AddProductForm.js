@@ -30,18 +30,32 @@ const AddProductForm = (props) => {
 		<Form onSubmit={toggleModalConfirm}>
 			<FormGroup>
 				<Label for='productName'>Product Name</Label>
-				<Input type='text' id='productName' placeholder='Product Name' onChange={handleInput} value={userInput.productNameInput} required />
+				<Input type='text' id='productName' placeholder='Product Name' onChange={handleInput} value={userInput.productName} required />
+			</FormGroup>
+			<FormGroup>
+				<Label for='productDescription'>Product Description</Label>
+				<textarea
+					maxLength='2000'
+					name='productDescription'
+					id='productDescription'
+					placeholder='Product Description'
+					onChange={handleInput}
+					value={userInput.productDescription}
+					required
+					className='form-control'
+					rows='5'
+				/>
 			</FormGroup>
 			<FormGroup>
 				<Label for='price'>Price</Label>
 				<InputGroup size='m'>
 					<InputGroupAddon addonType='prepend'>Rp.</InputGroupAddon>
-					<Input type='number' id='price' placeholder='Price' onChange={handleInput} value={userInput.priceInput} required />
+					<Input type='number' id='price' placeholder='Price' onChange={handleInput} value={userInput.price} required />
 				</InputGroup>
 			</FormGroup>
 			<FormGroup>
 				<Label for='stock'>Initial Stock</Label>
-				<Input type='number' id='stock' placeholder='Stock' onChange={handleInput} value={userInput.stockInput} required />
+				<Input type='number' id='stock' placeholder='Stock' onChange={handleInput} value={userInput.stock} required />
 			</FormGroup>
 			<FormGroup>
 				<Label for='category'>Category</Label>
