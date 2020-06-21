@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import { Table, Container, Alert } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router-dom'
+import Swal from 'sweetalert2'
 
 import { FetchManageProductData } from '../../Redux/Action'
-
 import ManageProductPagination from '../../Components/ManageProduct/ManageProductPagination'
 import CustomLoader from '../../Components/CustomLoader'
 import MainTableBody from '../../Components/ManageProduct/MainTableBody'
@@ -36,7 +36,7 @@ const ManageProductPage = (props) => {
 
 	const data = useSelector((state) => state.manageProduct.data)
 	const loading = useSelector((state) => state.manageProduct.loading)
-	// const addSuccess = useSelector((state) => state.manageProduct.addSuccess)
+	const error = useSelector((state) => state.manageProduct.error)
 
 	const dispatch = useDispatch()
 
@@ -78,6 +78,14 @@ const ManageProductPage = (props) => {
 		})
 	}
 
+	if(error){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Something went wrong!',
+			footer: '<a href="#">Refresh Page</a>',
+		})
+	}
 	return (
 		<React.Fragment>
 			<Container>
