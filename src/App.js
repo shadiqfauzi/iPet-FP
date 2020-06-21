@@ -11,6 +11,10 @@ import Login from './Pages/Login'
 import Register from './Pages/Register'
 import ManageProductPage from './Pages/ManageProductPage'
 import AddProductPage from './Pages/AddProductPage'
+import ProductsPage from './Pages/ProductsPage'
+import NotFound from './Pages/NotFound'
+import ProductDetail from './Pages/ProductDetail'
+import Cart from './Pages/Cart'
 
 function App() {
 	return (
@@ -22,6 +26,10 @@ function App() {
 				<Route path='/register' component={Register} />
 				<Route path='/manage-product' component={ManageProductPage} />
 				<Route path='/add-product' component={AddProductPage} />
+				<Route path='/products' component={ProductsPage} />
+				<Route path='/products-detail/:id' component={ProductDetail} />
+				<Route path='/cart' component={Cart} />
+				<Route component={NotFound} />
 			</Switch>
 			<Footer />
 		</div>

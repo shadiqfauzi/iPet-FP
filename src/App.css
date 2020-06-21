@@ -74,6 +74,15 @@ h1 {
     background-size: cover;
 }
 
+.img-error {
+    background-image: url('./Public/Assets/error.jpeg');
+    height: 100vh;
+    width: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
 .auth-form {
     padding-top: 8rem;
 }
@@ -144,12 +153,12 @@ h1 {
     /* text-align: center; */
 }
 
-.card {
+.card-d {
     transition: 0.5s;
     cursor: pointer;
 }
 
-.card:hover {
+.card-d:hover {
     transform: scale(1.05);
     box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
 }
@@ -160,10 +169,19 @@ h1 {
     font-weight: 800;
 }
 
+.titleName {
+    font-weight: 900;
+    font-size: 150%;
+}
+
 .footer {
     background-color: #f5f5f5;
 }
 
-.form-group .custom-file{
-  z-index: 0;
+.form-group .custom-file {
+    z-index: 0;
+}
+
+.text-p {
+    text-align: center;
 }

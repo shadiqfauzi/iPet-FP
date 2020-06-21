@@ -40,7 +40,7 @@ class LandingPage extends Component {
                     </div>
                 </div>
                 <div className='content'>
-                    <h1 className='AbUs'>ABOUT US</h1>
+                    <h1 className='AbUs'>CATEGORIES</h1>
                     <div className='arrow'>
                         <svg
                             className='bi bi-chevron-down'
@@ -63,85 +63,110 @@ class LandingPage extends Component {
                         <div className='container'>
                             <div className='row'>
                                 <div className='col-sm'>
-                                    <Card className='card'>
+                                    <Card className='card-d'>
                                         <CardImg
                                             top
                                             width='100%'
-                                            src='https://i.pinimg.com/564x/7f/eb/57/7feb574678e360c91813bb13a0f31c15.jpg'
+                                            src={require('../Public/Assets/info1.jpg')}
                                             alt='Card image cap'
                                         />
                                         <CardBody>
-                                            <CardTitle>Card title</CardTitle>
+                                            <CardTitle className='titleName'>
+                                                Toys
+                                            </CardTitle>
                                             <CardSubtitle>
                                                 Card subtitle
                                             </CardSubtitle>
                                             <CardText>
-                                                Some quick example text to build
-                                                on the card title and make up
-                                                the bulk of the card's content.
+                                                Find every kind of toy for every
+                                                kind of dog or cat at iPet.
+                                                You'll find we carry a variety
+                                                of appropriately-sized toys for
+                                                your pet
                                             </CardText>
                                         </CardBody>
                                     </Card>
                                 </div>
                                 <div className='col-sm'>
-                                    <Card className='card'>
+                                    <Card className='card-d'>
                                         <CardImg
                                             top
                                             width='100%'
-                                            src='https://i.pinimg.com/564x/3c/66/f8/3c66f856064fc3dbdfad9ecc0a2bc3a3.jpg'
+                                            src={require('../Public/Assets/info2.jpg')}
                                             alt='Card image cap'
                                         />
                                         <CardBody>
-                                            <CardTitle>Card title</CardTitle>
-                                            <CardSubtitle>
-                                                Card subtitle
-                                            </CardSubtitle>
+                                            <CardTitle className='titleName'>
+                                                Foods
+                                            </CardTitle>
                                             <CardText>
-                                                Some quick example text to build
-                                                on the card title and make up
-                                                the bulk of the card's content.
+                                                Finding the right dog and cat
+                                                food for your pet is easy at
+                                                iPet. With top food brands you
+                                                trust, you'll find a wide
+                                                variety of healthy food.
                                             </CardText>
                                         </CardBody>
                                     </Card>
                                 </div>
                                 <div className='col-sm'>
-                                    <Card className='card'>
+                                    <Card className='card-d'>
                                         <CardImg
                                             top
                                             width='100%'
-                                            src='https://i.pinimg.com/564x/81/f0/96/81f09667b1e14675bb98f71578577b0f.jpg'
+                                            src={require('../Public/Assets/info3.jpg')}
                                             alt='Card image cap'
                                         />
                                         <CardBody>
-                                            <CardTitle>Card title</CardTitle>
-                                            <CardSubtitle>
-                                                Card subtitle
-                                            </CardSubtitle>
+                                            <CardTitle className='titleName'>
+                                                Medicines
+                                            </CardTitle>
                                             <CardText>
-                                                Some quick example text to build
-                                                on the card title and make up
-                                                the bulk of the card's content.
+                                                Help them look and feel their
+                                                best. At iPet we carry pet
+                                                health care and wellness
+                                                products, such as
+                                                over-the-counter medications.
                                             </CardText>
                                         </CardBody>
                                     </Card>
                                 </div>
                                 <div className='col-sm'>
-                                    <Card className='card'>
+                                    <Card className='card-d'>
                                         <CardImg
                                             top
                                             width='100%'
-                                            src='https://i.pinimg.com/564x/1a/a2/1b/1aa21b5e6dd61a1a1a3494e39cd5a064.jpg'
+                                            src={require('../Public/Assets/info4.jpg')}
                                             alt='Card image cap'
                                         />
                                         <CardBody>
-                                            <CardTitle>Card title</CardTitle>
-                                            <CardSubtitle>
-                                                Card subtitle
-                                            </CardSubtitle>
+                                            <CardTitle className='titleName'>
+                                                Hygiene
+                                            </CardTitle>
                                             <CardText>
-                                                Some quick example text to build
-                                                on the card title and make up
-                                                the bulk of the card's content.
+                                                Keep your home smelling its best
+                                                with cleaning supplies to tackle
+                                                the toughest odors and stains.
+                                                healthy and safe so you can play
+                                                with your best friend any time.
+                                            </CardText>
+                                        </CardBody>
+                                    </Card>
+                                </div>
+                                <div className='col-sm'>
+                                    <Card className='card-d'>
+                                        <CardImg
+                                            top
+                                            width='100%'
+                                            src={require('../Public/Assets/info5.jpg')}
+                                            alt='Card image cap'
+                                        />
+                                        <CardBody>
+                                            <CardTitle className='titleName'>
+                                                And Many More
+                                            </CardTitle>
+                                            <CardText>
+                                                mkdfksdjkfksjkfjkdjs
                                             </CardText>
                                         </CardBody>
                                     </Card>
