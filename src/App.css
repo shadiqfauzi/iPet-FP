@@ -184,4 +184,12 @@ h1 {
 
 .text-p {
     text-align: center;
+
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators .active,
+.carousel-indicators li   {
+    filter: invert(100%);
 }

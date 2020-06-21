@@ -1,10 +1,16 @@
 import { combineReducers } from 'redux'
 import { manageProductReducer } from './manageProductReducer'
 import { productViewReducer } from './productViewReducer'
-import { authReducer } from './authReducer';
+import { authReducer } from './authReducer'
+import { transactionStatusReducer } from './transactionStatusReducer'
+import { productPackageReducer } from './productPackageReducer'
+import { reportReducer } from './reportReducer'
 
 export default combineReducers({
-    auth : authReducer,
-    manageProduct: manageProductReducer,
-    productView: productViewReducer,
+	manageProduct: manageProductReducer,
+	productView: productViewReducer,
+	auth: authReducer,
+	productPackage: productPackageReducer,
+	transactionStatus: transactionStatusReducer,
+	report: reportReducer,
 })

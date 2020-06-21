@@ -15,12 +15,11 @@ import ManageUsers from './Pages/ManageUsers'
 import LandingPage from './Pages/LandingPage'
 import Login from './Pages/Login'
 import Register from './Pages/Register'
-import ManageProductPage from './Pages/ManageProductPage'
-import AddProductPage from './Pages/AddProductPage'
 import ProductsPage from './Pages/ProductsPage'
 import NotFound from './Pages/NotFound'
 import ProductDetail from './Pages/ProductDetail'
 import Cart from './Pages/Cart'
+import AdminPage from './Pages/AdminPage'
 
 function App() {
 	const dispatch = useDispatch()
@@ -41,9 +40,8 @@ function App() {
 				<Route path='/transhistory' component={TransHistory} />
 				<Route path='/editProfile' component={editProfile} />
 				<Route path='/manageUsers' component={ManageUsers} />
-				<Route path='/manage-product' component={ManageProductPage} />
-				<Route path='/add-product' component={AddProductPage} />
 				<Route path='/products' component={ProductsPage} />
+				<Route path='/admin' component={AdminPage} />
 				<Route component={NotFound} />
 			</Switch>
 			<Footer />

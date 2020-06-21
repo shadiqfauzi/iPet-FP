@@ -29,7 +29,8 @@ const Header = (props) => {
 		<div>
 			<Navbar color='light' light expand='md' fixed='top'>
 				<NavbarBrand
-					href='/'
+					tag={Link}
+					to={'/'}
 					className='navbar'
 					style={{
 						marginLeft: '5%',
@@ -74,6 +75,9 @@ const Header = (props) => {
 										</Link>
 										<Link to='/cart'>
 											<DropdownItem>cart</DropdownItem>
+										</Link>
+										<Link to='/admin'>
+											<DropdownItem>Admin Page</DropdownItem>
 										</Link>
 									</React.Fragment>
 								) : (
