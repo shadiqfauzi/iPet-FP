@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button } from 'reactstrap'
+import Swal from 'sweetalert2'
 
 import { fetchTransactionStatus, changeTrxStatus } from '../../Redux/Action'
 import CustomModal from '../../Components/ManageProduct/CustomModal'
@@ -13,6 +14,7 @@ const TransactionStatusDetailPage = (props) => {
 
 	const data = useSelector((state) => state.transactionStatus.data)
 	const loading = useSelector((state) => state.transactionStatus.loading)
+	const error = useSelector((state) => state.transactionStatus.error)
 
 	const [modal, setModal] = useState(false)
 	const [approveModal, setApproveModal] = useState(false)
@@ -33,6 +35,14 @@ const TransactionStatusDetailPage = (props) => {
 	console.log(data)
 
 	if (loading) return <CustomLoader />
+	if (error) {
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Something went wrong!',
+			footer: '<a href="#">Refresh Page</a>',
+		})
+	}
 	return (
 		<React.Fragment>
 			<div>

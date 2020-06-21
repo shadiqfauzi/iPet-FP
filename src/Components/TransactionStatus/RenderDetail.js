@@ -63,7 +63,7 @@ const RenderDetail = (props) => {
 									<div>
 										Quantity: {item.qty}(@Rp{item.price.toLocaleString('id-ID')},00)
 									</div>
-									<div>SubTotal: Rp{item.subTotal.toLocaleString('id-ID')},00</div>
+									<div>SubTotal: Rp{(item.qty*item.price).toLocaleString('id-ID')},00</div>
 								</div>
 								{index !== val.cart.length - 1 && <hr className='m-0'></hr>}
 							</React.Fragment>

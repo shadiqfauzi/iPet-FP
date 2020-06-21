@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
+import { useLocation } from 'react-router-dom'
+import { Alert } from 'reactstrap'
 
 import { FetchProductPackage } from '../../Redux/Action/'
 import PackageTable from '../../Components/ManageProduct/PackageTable'
 import CustomLoader from '../../Components/CustomLoader'
-import { useLocation } from 'react-router-dom'
-import { Alert } from 'reactstrap'
 
 const useQuery = () => {
 	return new URLSearchParams(useLocation().search)
@@ -23,6 +24,7 @@ const ProductPackagePage = (props) => {
 	const dispatch = useDispatch()
 	const data = useSelector((state) => state.productPackage.data)
 	const loading = useSelector((state) => state.productPackage.loading)
+	const error = useSelector((state) => state.productPackage.error)
 
 	useEffect(() => {
 		window.scrollTo(0,0)
@@ -30,6 +32,14 @@ const ProductPackagePage = (props) => {
 	}, [dispatch])
 
 	if (loading) return <CustomLoader />
+	if(error){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Something went wrong!',
+			footer: '<a href="#">Refresh Page</a>',
+		})
+	}
 	return (
 		<div>
 			<Alert color='success' isOpen={alert} toggle={() => setAlert(null)}>
