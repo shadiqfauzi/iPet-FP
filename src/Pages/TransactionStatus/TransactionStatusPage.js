@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
+import Swal from 'sweetalert2'
 
 import DynamicTable from '../../Components/TransactionStatus/DynamicTable'
 import { fetchTransactionStatus } from '../../Redux/Action'
@@ -25,6 +26,7 @@ const TransactionStatusPage = (props) => {
 
 	const loading = useSelector((state) => state.transactionStatus.loading)
 	const data = useSelector((state) => state.transactionStatus.data)
+	const error = useSelector((state) => state.transactionStatus.error)
 
 	const dispatch = useDispatch()
 
@@ -60,6 +62,14 @@ const TransactionStatusPage = (props) => {
 		dispatch(fetchTransactionStatus(status, null, userInput, page))
 	}
 
+	if(error){
+		Swal.fire({
+			icon: 'error',
+			title: 'Oops...',
+			text: 'Something went wrong!',
+			footer: '<a href="#">Refresh Page</a>',
+		})
+	}
 	return (
 		<div>
 			<div className='col-6 p-0'>
