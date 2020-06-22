@@ -68,7 +68,7 @@ export const Login = (form) => {
         })
         try{
             let res = await Axios.post(`${API_URL}/users/login`, form)
-            let { id, username, email, roleId, token, verified } = res.data.data
+            let { id, username, email, roleId, token, verified, status } = res.data.data
             dispatch({
                 type : LOGIN,
                 payload : {
@@ -76,7 +76,8 @@ export const Login = (form) => {
                     username,
                     email,
                     roleId,
-                    verified
+                    verified,
+                    status
                 }
             })
             localStorage.setItem('token', token)

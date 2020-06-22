@@ -21,6 +21,7 @@ const RegisterPage = () => {
     const dispatch = useDispatch()
 
     const handleRegister = ()=> {
+        
         let { username, email, password, confirmPassword } = formInput;
         if(username && email && password && confirmPassword){
             if(password === confirmPassword){
