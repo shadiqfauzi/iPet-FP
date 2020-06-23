@@ -12,8 +12,8 @@ const ProductCard = (props) => {
 					<h5 className='card-title'>
 						{data.productName.substring(0, 25)} {data.productName.length > 25 ? '...' : null}
 					</h5>
-					<Link to={`/products/${data.productId}`} >
-					<button className='btn btn-primary'>Details</button>
+					<Link to={`/products/${data.productId}`}>
+						<button className='btn btn-primary'>Details</button>
 					</Link>
 				</div>
 			</div>

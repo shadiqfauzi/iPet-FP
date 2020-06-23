@@ -222,8 +222,6 @@ const EditProductPage = (props) => {
 		setFinishEdit(true)
 	}
 
-	console.log(userInput.productDescription)
-
 	if (loading) return <CustomLoader />
 	if (finishEdit) return <Redirect to='/admin/manage-product?edit-success=1' />
 	return (

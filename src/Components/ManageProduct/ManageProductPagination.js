@@ -28,11 +28,11 @@ const ManageProductPagination = (props) => {
 		return result
 	}
 
-
 	return (
 		<Pagination aria-label='Page navigation example'>
-			<PaginationItem disabled={currentPage+1===1 ? true : false}>
-				<PaginationLink first 
+			<PaginationItem disabled={currentPage + 1 === 1 ? true : false}>
+				<PaginationLink
+					first
 					onClick={() => {
 						setCurrentPage(0)
 						handlePage(0)
@@ -40,30 +40,33 @@ const ManageProductPagination = (props) => {
 					}}
 				/>
 			</PaginationItem>
-			<PaginationItem disabled={currentPage+1===1 ? true : false}>
-				<PaginationLink previous 
+			<PaginationItem disabled={currentPage + 1 === 1 ? true : false}>
+				<PaginationLink
+					previous
 					onClick={() => {
-						setCurrentPage(prevState => prevState - 1)
-						handlePage(currentPage-1)
+						setCurrentPage((prevState) => prevState - 1)
+						handlePage(currentPage - 1)
 						window.scrollTo(0, 0)
 					}}
 				/>
 			</PaginationItem>
 			{renderPageButtons()}
-			<PaginationItem disabled={currentPage+1===totalPage ? true : false}>
-				<PaginationLink next
-				onClick={() => {
-					setCurrentPage(prevState => prevState + 1)
-					handlePage(currentPage+1)
-					window.scrollTo(0, 0)
-				}}
+			<PaginationItem disabled={currentPage + 1 === totalPage ? true : false}>
+				<PaginationLink
+					next
+					onClick={() => {
+						setCurrentPage((prevState) => prevState + 1)
+						handlePage(currentPage + 1)
+						window.scrollTo(0, 0)
+					}}
 				/>
 			</PaginationItem>
-			<PaginationItem disabled={currentPage+1===totalPage ? true : false}>
-				<PaginationLink last 
+			<PaginationItem disabled={currentPage + 1 === totalPage ? true : false}>
+				<PaginationLink
+					last
 					onClick={() => {
-						setCurrentPage(totalPage-1)
-						handlePage(totalPage-1)
+						setCurrentPage(totalPage - 1)
+						handlePage(totalPage - 1)
 						window.scrollTo(0, 0)
 					}}
 				/>

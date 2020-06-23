@@ -10,7 +10,6 @@ import { keepLogin } from './Redux/Action/authAction'
 import { useDispatch, useSelector } from 'react-redux'
 import TransHistory from './Pages/TransHistory'
 import editProfile from './Pages/EditProfile'
-import ManageUsers from './Pages/ManageUsers'
 
 import LandingPage from './Pages/LandingPage'
 import Login from './Pages/Login'
@@ -32,9 +31,9 @@ function App() {
 	})
 
 	const roleCheck = () => {
-		if(roleId === 1){
+		if (roleId === 1) {
 			return <Route path='/admin' component={AdminPage} />
-		}else{
+		} else {
 			return null
 		}
 	}
@@ -52,8 +51,7 @@ function App() {
 				<Route path='/profile' component={Profile} />
 				<Route path='/transhistory' component={TransHistory} />
 				<Route path='/editProfile' component={editProfile} />
-				<Route path='/manageUsers' component={ManageUsers} />
-				<Route path='/products' component={ProductsPage} exact/>
+				<Route path='/products' component={ProductsPage} exact />
 				<Route path='/products/:id' component={ProductDetail} />
 				{roleCheck()}
 				<Route component={NotFound} />

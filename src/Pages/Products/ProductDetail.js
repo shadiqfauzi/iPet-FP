@@ -49,9 +49,9 @@ const ProductDetail = () => {
 						</div>
 						<div className='col-12 mt-2'>
 							<div className='row justify-content-around'>
-								{data.images.map((e) => {
+								{data.images.map((e, i) => {
 									return (
-										<div className='col-2'>
+										<div key={i} className='col-2'>
 											<img
 												onClick={() => setImage(e.imagePath)}
 												style={{ cursor: 'pointer', borderRadius: '5px' }}

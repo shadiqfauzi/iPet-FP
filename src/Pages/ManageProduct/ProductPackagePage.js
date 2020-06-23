@@ -27,12 +27,12 @@ const ProductPackagePage = (props) => {
 	const error = useSelector((state) => state.productPackage.error)
 
 	useEffect(() => {
-		window.scrollTo(0,0)
+		window.scrollTo(0, 0)
 		dispatch(FetchProductPackage())
 	}, [dispatch])
 
 	if (loading) return <CustomLoader />
-	if(error){
+	if (error) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',

@@ -44,7 +44,6 @@ export const changeTrxStatus = (id, status, data) => {
 			type: API_TRANSACTION_STATUS_START,
 		})
 		try {
-			console.log(status)
 			let body = {
 				transactionId: id,
 				approve: status === 'approve' && 1,

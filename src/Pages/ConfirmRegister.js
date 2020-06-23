@@ -16,8 +16,8 @@ const ConfirmRegister = (props) => {
 						<div className='alert alert-success' role='alert'>
 							<h4 className='alert-heading'>Email Verification</h4>
 							<p>
-								Congratulations! You have successfully registered an account and login on iPet! Just one more step to gain full access of our
-								products.
+								Congratulations! You have successfully registered an account and login on iPet! Just one more step to gain full access
+								of our products.
 							</p>
 							<hr></hr>
 							<p className='mb-0'>We have sent an email to '{email}' on how to verify your account.</p>

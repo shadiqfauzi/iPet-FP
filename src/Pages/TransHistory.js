@@ -80,7 +80,7 @@ const TransHistory = () => {
 				return (
 					<React.Fragment key={val.id}>
 						<tr className='table-success' key={val.id}>
-							<td colSpan='4'>{moment(val.date).format('YYYY-MM-DD h:mm:ss')}</td>
+							<td colSpan='4'>{moment(val.date).format('YYYY-MM-DD HH:mm:ss')}</td>
 							<td>Rp. {val.totalPrice.toLocaleString()}</td>
 						</tr>
 						<tr>
@@ -116,8 +116,6 @@ const TransHistory = () => {
 			}
 		})
 	}
-
-	console.log(data)
 
 	return (
 		<div>

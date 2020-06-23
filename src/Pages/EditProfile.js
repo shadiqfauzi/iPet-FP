@@ -58,7 +58,6 @@ const EditProfile = () => {
 						})
 					})
 					.catch((err) => Swal.fire(err.message))
-				console.log(e)
 			}
 
 			reader.readAsDataURL(file)
@@ -140,7 +139,7 @@ const EditProfile = () => {
 		if (address) {
 			Axios.delete(`${API_URL}/users/deleteAddress/${address}`)
 				.then((res) => {
-					Swal.fire(`Phone Number has been deleted`)
+					Swal.fire(`Address has been deleted`)
 					Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
 						.then((respond) => setEditData(respond.data.data))
 						.catch((err) => console.log(err))

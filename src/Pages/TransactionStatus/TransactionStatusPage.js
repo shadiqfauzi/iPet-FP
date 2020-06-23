@@ -62,7 +62,7 @@ const TransactionStatusPage = (props) => {
 		dispatch(fetchTransactionStatus(status, null, userInput, page))
 	}
 
-	if(error){
+	if (error) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -119,11 +119,7 @@ const TransactionStatusPage = (props) => {
 			</div>
 			{loading ? <CustomLoader /> : <DynamicTable data={data} />}
 			<div className='d-flex justify-content-center'>
-				<TransactionStatusPagination
-					currentPage={currentPage}
-					setCurrentPage={setCurrentPage}
-					handlePage={handlePage}
-				/>
+				<TransactionStatusPagination currentPage={currentPage} setCurrentPage={setCurrentPage} handlePage={handlePage} />
 			</div>
 		</div>
 	)

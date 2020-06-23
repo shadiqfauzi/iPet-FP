@@ -43,9 +43,9 @@ const VerifyPage = (props) => {
 						<div className='alert alert-success' role='alert'>
 							<h4 className='alert-heading'>Verification Success</h4>
 							<p>Congratulations! Your account is now verified.</p>
-                            <Link to='/'>
-                                <p>Click Here To Continue.</p>
-                            </Link>
+							<Link to='/'>
+								<p>Click Here To Continue.</p>
+							</Link>
 						</div>
 					</div>
 				</div>

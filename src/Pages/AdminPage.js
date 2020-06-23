@@ -12,6 +12,7 @@ import ProductPackageDetail from './ManageProduct/ProductPackageDetail'
 import AddPackagePage from './ManageProduct/AddPackagePage'
 import EditPackagePage from './ManageProduct/EditPackagePage'
 import AdminLandingPage from './AdminLandingPage'
+import ManageUsers from './ManageUsers'
 
 const useQuery = () => {
 	return new URLSearchParams(useLocation().search)
@@ -62,6 +63,9 @@ const AdminPage = (props) => {
 						</Route>
 						<Route path={`${path}/transaction-status/detail/:transactionId`}>
 							<TransactionStatusDetailPage />
+						</Route>
+						<Route path={`${path}/manage-users`}>
+							<ManageUsers />
 						</Route>
 					</Switch>
 				</div>

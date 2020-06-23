@@ -1,4 +1,11 @@
-import { API_MANAGE_PRODUCT_START, FETCH_PRODUCTS, FETCH_CATEGORY, API_MANAGE_PRODUCT_SUCCESS, API_MANAGE_PRODUCT_FAILED, TOGGLE_ADDSUCCESS } from '../types'
+import {
+	API_MANAGE_PRODUCT_START,
+	FETCH_PRODUCTS,
+	FETCH_CATEGORY,
+	API_MANAGE_PRODUCT_SUCCESS,
+	API_MANAGE_PRODUCT_FAILED,
+	TOGGLE_ADDSUCCESS,
+} from '../types'
 
 const INITIAL_STATE = {
 	data: [],
@@ -35,7 +42,7 @@ export const manageProductReducer = (state = INITIAL_STATE, action) => {
 				loading: false,
 				status: action.payload.status,
 				message: action.payload.message,
-				addSuccess: action.payload.addSuccess ? action.payload.addSuccess : state.addSuccess
+				addSuccess: action.payload.addSuccess ? action.payload.addSuccess : state.addSuccess,
 			}
 		case API_MANAGE_PRODUCT_FAILED:
 			return {
@@ -46,9 +53,9 @@ export const manageProductReducer = (state = INITIAL_STATE, action) => {
 				message: action.payload.message,
 			}
 		case TOGGLE_ADDSUCCESS:
-			return{
+			return {
 				...state,
-				addSuccess: false
+				addSuccess: false,
 			}
 		default:
 			return state

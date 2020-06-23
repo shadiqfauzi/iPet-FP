@@ -47,7 +47,6 @@ const AdminLandingPage = (props) => {
 	}, [dispatch])
 
 	useEffect(() => {
-		window.scrollTo(0, 0)
 		if (selectMonth.value && selectProduct.value) {
 			dispatch(FetchReport(selectMonth.value, selectProduct.value ? selectProduct.value : null))
 		}

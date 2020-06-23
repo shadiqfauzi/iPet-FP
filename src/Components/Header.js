@@ -50,7 +50,9 @@ const Header = (props) => {
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink tag={Link} to={'/products'}>Products</NavLink>
+							<NavLink tag={Link} to={'/products'}>
+								Products
+							</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink>Service</NavLink>
@@ -94,8 +96,6 @@ const Header = (props) => {
 										<Link to='/register'>
 											<DropdownItem>Register</DropdownItem>
 										</Link>
-										<DropdownItem divider />
-										<DropdownItem>Reset</DropdownItem>
 									</React.Fragment>
 								)}
 							</DropdownMenu>

@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Axios from 'axios'
 import { API_URL } from '../Support/API_URL'
-import { FaChartLine, FaShoppingCart, FaFileInvoiceDollar } from 'react-icons/fa'
+import { FaChartLine, FaShoppingCart, FaFileInvoiceDollar, FaUserCog } from 'react-icons/fa'
 
 const AdminLinks = (props) => {
 	const { status } = props
@@ -29,17 +29,18 @@ const AdminLinks = (props) => {
 	let addProduct = location.pathname.match(/manage-product\/add/)
 	let productPackage = location.pathname.match(/manage-product\/package/)
 	let addPackage = location.pathname.match(/manage-product\/new-package/)
+	let manageUsers = location.pathname.match(/manage-users/)
 
 	return (
 		<ul className='list-group list-group-flush'>
 			<Link to={'/admin'}>
 				<li style={{ cursor: 'pointer' }} className={`list-group-item ${location.pathname === '/admin' && 'list-group-item-primary'}`}>
-				<FaChartLine /> Report Overview
+					<FaChartLine /> Report Overview
 				</li>
 			</Link>
 			<Link to={'/admin/manage-product'}>
 				<li style={{ cursor: 'pointer' }} className={`list-group-item ${manageProduct && 'list-group-item-primary'}`}>
-				<FaShoppingCart /> Manage Product
+					<FaShoppingCart /> Manage Product
 				</li>
 			</Link>
 			{manageProduct && (
@@ -103,6 +104,11 @@ const AdminLinks = (props) => {
 					</Link>
 				</React.Fragment>
 			)}
+			<Link to={'/admin/manage-users'}>
+				<li style={{ cursor: 'pointer' }} className={`list-group-item ${manageUsers && 'list-group-item-primary'}`}>
+					<FaUserCog /> Manage Users
+				</li>
+			</Link>
 		</ul>
 	)
 }

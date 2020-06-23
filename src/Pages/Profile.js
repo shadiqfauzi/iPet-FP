@@ -28,7 +28,7 @@ const Profile = () => {
 
 	return (
 		<div className='d-flex justify-content-center'>
-			<div style={{ width: '15%' }} classNam='d-flex justify-content-center'>
+			<div style={{ width: '15%' }} className='d-flex justify-content-center'>
 				<Card>
 					<CardImg
 						top
@@ -50,8 +50,12 @@ const Profile = () => {
 							<CardText style={{ fontWeight: 'bold' }} className='float-left'>
 								Address
 							</CardText>
-							{formInput.address.map((val) => {
-								return <CardText className='d-flex justify-content-end'>{val.address}</CardText>
+							{formInput.address.map((val, index) => {
+								return (
+									<CardText key={index} className='d-flex justify-content-end'>
+										{val.address}
+									</CardText>
+								)
 							})}
 							<CardText style={{ fontWeight: 'bold' }} className='float-left'>
 								Phone Number

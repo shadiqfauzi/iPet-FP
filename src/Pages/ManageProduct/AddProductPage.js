@@ -137,7 +137,6 @@ const AddProductPage = (props) => {
 
 	const categoryList = useSelector((state) => state.manageProduct.categoryList)
 	const loading = useSelector((state) => state.manageProduct.loading)
-	// const addSuccess = useSelector((state) => state.manageProduct.addSuccess)
 
 	if (loading) {
 		return <CustomLoader />

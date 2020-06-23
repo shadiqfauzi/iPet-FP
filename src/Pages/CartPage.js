@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { Button } from 'reactstrap'
 import Swal from 'sweetalert2'
@@ -13,6 +13,9 @@ const CartPage = () => {
 	const username = useSelector((state) => state.auth.username)
 	const email = useSelector((state) => state.auth.email)
 	const data = useSelector((state) => state.cart.data)
+
+	const [loading, setLoading] = useState(false)
+	const [redirect, setRedirect] = useState(false)
 
 	const dispatch = useDispatch()
 
@@ -66,8 +69,13 @@ const CartPage = () => {
 			confirmButtonText: 'Yes',
 		}).then((result) => {
 			if (result.value) {
+				setLoading(true)
 				Axios.post(`${API_URL}/products/transaction`, { cart: data, userId: id, totalPrice: totalLetsGOOO, API_URL, username, email })
-					.then((res) =>
+					.then((res) => {
+						if (id) {
+							dispatch(FetchCartByUserId(id))
+						}
+						setLoading(false)
 						Swal.fire({
 							title: 'Transaction request submitted!',
 							text: `An email has been sent to ${email} containing an invoice of this transaction.`,
@@ -76,17 +84,16 @@ const CartPage = () => {
 							confirmButtonColor: '#3085d6',
 							cancelButtonColor: '#d33',
 							confirmButtonText: 'OK',
-						}).then((newResult) => {
-							if (newResult.value) {
-								return <Redirect to='/transaction' />
-							}
+						}).then(() => {
+							setRedirect(true)
 						})
-					)
+					})
 					.catch((err) => console.log(err))
 			}
 		})
 	}
 
+	if (redirect) return <Redirect to='transhistory' />
 	return (
 		<div className='container mt-5' style={{ minHeight: '100vh' }}>
 			<h4>Your Cart {data.length === 0 ? 'IS EMPTY, YEET' : null}</h4>
@@ -115,7 +122,13 @@ const CartPage = () => {
 							<td colSpan='4'></td>
 							<td colSpan='2'>
 								<Button style={{ width: '100%' }} size='sm' onClick={handlePayment}>
-									Payment
+									{!loading ? (
+										'Payment'
+									) : (
+										<div class='spinner-border spinner-border-sm' role='status'>
+											<span class='sr-only'>Loading...</span>
+										</div>
+									)}
 								</Button>
 							</td>
 						</tr>

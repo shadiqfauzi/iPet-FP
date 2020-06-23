@@ -7,14 +7,12 @@ import Axios from 'axios'
 const ManageUsers = () => {
 	const [data, setData] = useState([])
 
-	// const id = useSelector((state) => state.auth.id)
 	const roleId = useSelector((state) => state.auth.roleId)
 	useEffect(() => {
 		if (roleId === 1) {
 			Axios.get(`${API_URL}/users/fetchAllUsers`)
 				.then((res) => {
 					setData(res.data.data)
-					// console.log(res.data.data)
 				})
 				.catch((err) => console.log(err))
 		}
@@ -41,7 +39,6 @@ const ManageUsers = () => {
 
 	const renderusername = () => {
 		return data.map((val) => {
-			console.log(val.status)
 			return (
 				<React.Fragment key={val.id}>
 					<tr className='table-success' key={val.id}>
@@ -59,13 +56,6 @@ const ManageUsers = () => {
 									Unban{' '}
 								</Button>
 							)}
-							{/* {
-                      val.status === 1
-                      ?
-                      <Button color='primary' onClick={() => handleBan(val.id)}> Ban </Button>
-                      :
-                      <Button color='danger' onClick={() => handleUnBan(val.id) }> Unban </Button>
-                    } */}
 						</td>
 					</tr>
 					<tr>

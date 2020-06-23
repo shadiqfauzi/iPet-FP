@@ -21,7 +21,6 @@ const ProductsPage = () => {
 			)
 		})
 	}
-	console.log(data)
 
 	return (
 		<div className='container'>

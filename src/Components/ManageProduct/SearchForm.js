@@ -36,7 +36,7 @@ const SearchForm = (props) => {
 		{ value: 'productName desc', label: 'Product Name Z-a' },
 		{ value: 'productName asc', label: 'Product Name a-Z' },
 	]
-	// Pindahin entar CSS nya
+
 	const styles = {
 		inputContainer: {
 			display: 'flex',
@@ -77,7 +77,6 @@ const SearchForm = (props) => {
 	}
 
 	const handleReset = () => {
-		// setIsOpen(false)
 		setSearchInput('')
 		setSelectedCategory(null)
 		setInputMaxPrice('')
