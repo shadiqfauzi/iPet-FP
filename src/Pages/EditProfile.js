@@ -112,7 +112,7 @@ const EditProfile = () => {
 
 	const renderAddress = () => {
 		let obj = {}
-		editData.address.map((val) => {
+		editData.address.forEach((val) => {
 			obj[val.id] = val.address
 		})
 		return obj
@@ -120,9 +120,8 @@ const EditProfile = () => {
 
 	const renderPhone = () => {
 		let obj = {}
-		editData.phoneNumbers.map((val) => {
+		editData.phoneNumbers.forEach((val) => {
 			obj[val.id] = val.phoneNumber
-			// console.log(obj, 'ini obj')
 		})
 		return obj
 	}
