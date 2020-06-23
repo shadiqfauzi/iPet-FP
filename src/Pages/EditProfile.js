@@ -26,55 +26,44 @@ const EditProfile = () => {
 		}
 	}, [id])
 
-	// const changePicture = async() => {
+	const changePicture = async () => {
+		const { value: file } = await Swal.fire({
+			title: 'Select image',
+			input: 'file',
+			inputAttributes: {
+				accept: 'image/*',
+				'aria-label': 'Upload your profile picture',
+			},
+		})
 
-	//     const { value: file } = await Swal.fire({
-	//         title: 'Select image',
-	//         input: 'file',
-	//         inputAttributes: {
-	//           'accept': 'image/*',
-	//           'aria-label': 'Upload your profile picture'
-	//         }
-	//       })
+		if (file) {
+			const reader = new FileReader()
+			reader.onload = (e) => {
+				let token = localStorage.getItem('token')
+				let headers = {
+					headers: {
+						Authorization: `Bearer ${token}`,
+						'Content-Type': 'multipart/form-data',
+					},
+				}
 
-	//       if (file) {
+				let formData = new FormData()
+				formData.append('image', file)
+				Axios.patch(`${API_URL}/users/changePicture/${id}`, formData, headers)
+					.then((res) => {
+						Swal.fire({
+							title: 'Your uploaded picture',
+							imageUrl: e.target.result,
+							imageAlt: 'The uploaded picture',
+						})
+					})
+					.catch((err) => Swal.fire(err.message))
+				console.log(e)
+			}
 
-	//           const reader = new FileReader()
-	//           reader.onload = (e) => {
-	//             let token = localStorage.getItem('token')
-	//             let headers = {
-	//                 headers : {
-	//                     'Authorization' : `Bearer ${token}`,
-	//                     'Content-Type'  : 'multipart/form-data'
-	//                 }
-	//             }
-	//             let blob = dataURItoBlob(e.target.result)
-	//             let formData = new FormData()
-	//             formData.append('image', blob)
-	//             for (var pair of formData.entries()) {
-	//               console.log(pair[0]+ ', ' + pair[1]);
-	//           }
-
-	//             Axios.patch(`${API_URL}/users/changePicture/${id}`, formData, headers )
-	//             .then(res => {
-	//               Swal.fire({
-	//                 title: 'Your uploaded picture',
-	//                 imageUrl: e.target.result,
-	//                 imageAlt: 'The uploaded picture'
-	//               })
-
-	//         })
-	//         .catch(err => Swal.fire(err.message))
-	//             console.log(e)
-	//           }
-
-	//           reader.readAsDataURL(file)
-	//         }
-	//         // Axios.patch(`${API_URL}/users/changePicture/${id}`,{file}, headers)
-	//         // .then(res => {
-	//         // })
-	//         // .catch(err => Swal.fire(err.message))
-	// }
+			reader.readAsDataURL(file)
+		}
+	}
 
 	const newAddress = async () => {
 		const { value: address } = await Swal.fire({
@@ -87,18 +76,55 @@ const EditProfile = () => {
 				}
 			},
 		})
-		console.log(address)
 		if (address) {
 			Axios.post(`${API_URL}/users/addAddress`, { address, userId: editData.id })
-				.then((res) => Swal.fire(`Your new address is ${address}`))
+				.then((res) => {
+					Swal.fire(`Your added new address is ${address}`)
+					Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
+						.then((respond) => setEditData(respond.data.data))
+						.catch((err) => console.log(err))
+				})
+				.catch((err) => console.log(err))
+		}
+	}
+	const newPhoneNumbers = async () => {
+		const { value: phoneNumber } = await Swal.fire({
+			title: 'Enter your Phone Number',
+			input: 'text',
+			showCancelButton: true,
+			inputValidator: (value) => {
+				if (!value) {
+					return 'You need to write something!'
+				}
+			},
+		})
+		if (phoneNumber) {
+			Axios.post(`${API_URL}/users/addPhone`, { phoneNumber, userId: editData.id })
+				.then((res) => {
+					Swal.fire(`Your added new Phone Number is ${phoneNumber}`)
+					Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
+						.then((respond) => setEditData(respond.data.data))
+						.catch((err) => console.log(err))
+				})
 				.catch((err) => console.log(err))
 		}
 	}
 
 	const renderAddress = () => {
-		return editData.address.map((val) => {
-			return { val }
+		let obj = {}
+		editData.address.map((val) => {
+			obj[val.id] = val.address
 		})
+		return obj
+	}
+
+	const renderPhone = () => {
+		let obj = {}
+		editData.phoneNumbers.map((val) => {
+			obj[val.id] = val.phoneNumber
+			// console.log(obj, 'ini obj')
+		})
+		return obj
 	}
 
 	const deleteAddress = async () => {
@@ -106,25 +132,130 @@ const EditProfile = () => {
 			title: 'Select Address',
 			input: 'select',
 			inputOptions: {
-				Address: {
-					renderAddress,
-				},
+				Address: renderAddress(),
 			},
 			inputPlaceholder: 'Select a address',
 			showCancelButton: true,
+		})
+
+		if (address) {
+			Axios.delete(`${API_URL}/users/deleteAddress/${address}`)
+				.then((res) => {
+					Swal.fire(`Phone Number has been deleted`)
+					Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
+						.then((respond) => setEditData(respond.data.data))
+						.catch((err) => console.log(err))
+				})
+				.catch((err) => console(err))
+		}
+	}
+
+	const deletePhoneNumbers = async () => {
+		const { value: phoneNumbers } = await Swal.fire({
+			title: 'Select Phone Number',
+			input: 'select',
+			inputOptions: {
+				'Phone Number': renderPhone(),
+			},
+			inputPlaceholder: 'Select a Phone Number',
+			showCancelButton: true,
+		})
+
+		if (phoneNumbers) {
+			Axios.delete(`${API_URL}/users/deletePhone/${phoneNumbers}`)
+				.then((res) => {
+					Swal.fire(`Phone Number has been deleted`)
+					Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
+						.then((respond) => setEditData(respond.data.data))
+						.catch((err) => console.log(err))
+				})
+				.catch((err) => console(err))
+		}
+	}
+
+	const editAddress = async () => {
+		const { value: address } = await Swal.fire({
+			title: 'Select field validation',
+			input: 'select',
+			inputOptions: {
+				Address: renderAddress(),
+			},
+			inputPlaceholder: 'Select a Address',
+			showCancelButton: true,
 			inputValidator: (value) => {
 				return new Promise((resolve) => {
-					if (value === 'oranges') {
+					if (value) {
 						resolve()
 					} else {
-						resolve('You need to select oranges :)')
+						resolve('You need to select Address')
 					}
 				})
 			},
 		})
 
 		if (address) {
-			Swal.fire(`You selected: ${address}`)
+			Swal.fire({
+				title: 'Enter your new address',
+				input: 'text',
+				showCancelButton: true,
+				inputValidator: (value) => {
+					if (!value) {
+						return 'You need to write something!'
+					} else {
+						Axios.patch(`${API_URL}/users/editAddress/${address}`, { address: value })
+							.then((res) => {
+								Swal.fire('Your address has been changed')
+								Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
+									.then((respond) => setEditData(respond.data.data))
+									.catch((err) => console.log(err))
+							})
+							.catch((err) => console.log(err))
+					}
+				},
+			})
+		}
+	}
+
+	const editPhoneNumber = async () => {
+		const { value: phoneNumber } = await Swal.fire({
+			title: 'Select field validation',
+			input: 'select',
+			inputOptions: {
+				'Phone Number': renderPhone(),
+			},
+			inputPlaceholder: 'Select a Phone Number',
+			showCancelButton: true,
+			inputValidator: (value) => {
+				return new Promise((resolve) => {
+					if (value) {
+						resolve()
+					} else {
+						resolve('You need to select Phone Number')
+					}
+				})
+			},
+		})
+
+		if (phoneNumber) {
+			Swal.fire({
+				title: 'Enter your new Phone Number',
+				input: 'text',
+				showCancelButton: true,
+				inputValidator: (value) => {
+					if (!value) {
+						return 'You need to write something!'
+					} else {
+						Axios.patch(`${API_URL}/users/editPhone/${phoneNumber}`, { phoneNumber: value })
+							.then((res) => {
+								Swal.fire('Your Phone Number has been changed')
+								Axios.get(`${API_URL}/users/fetchDataUsers/${id}`)
+									.then((respond) => setEditData(respond.data.data))
+									.catch((err) => console.log(err))
+							})
+							.catch((err) => console.log(err))
+					}
+				},
+			})
 		}
 	}
 
@@ -195,7 +326,9 @@ const EditProfile = () => {
 				<tbody>
 					<tr>
 						<td>
-							<Button color='warning'>Chage Picture</Button>
+							<Button color='warning' onClick={changePicture}>
+								Chage Picture
+							</Button>
 						</td>
 						<td>
 							<Button color='success' onClick={newAddress}>
@@ -203,7 +336,9 @@ const EditProfile = () => {
 							</Button>
 						</td>
 						<td>
-							<Button color='success'>Add</Button>
+							<Button color='success' onClick={newPhoneNumbers}>
+								Add
+							</Button>
 						</td>
 					</tr>
 					<tr>
@@ -213,10 +348,14 @@ const EditProfile = () => {
 							</Button>
 						</td>
 						<td>
-							<Button color='primary'>Edit</Button>
+							<Button color='primary' onClick={editAddress}>
+								Edit
+							</Button>
 						</td>
 						<td>
-							<Button color='primary'>Edit</Button>
+							<Button color='primary' onClick={editPhoneNumber}>
+								Edit
+							</Button>
 						</td>
 					</tr>
 					<tr>
@@ -227,7 +366,9 @@ const EditProfile = () => {
 							</Button>
 						</td>
 						<td>
-							<Button color='danger'>Delete</Button>
+							<Button color='danger' onClick={deletePhoneNumbers}>
+								Delete
+							</Button>
 						</td>
 					</tr>
 				</tbody>
@@ -237,32 +378,3 @@ const EditProfile = () => {
 }
 
 export default EditProfile
-
-// <div class="container border border-light">
-// <p style={{fontWeight : "bold"}} className="d-flex justify-content-center"> Edit Profile</p>
-//     <div class="row">
-//         <div class="col-sm border border-dark">
-//         <p style={{fontWeight : "bold"}}> Address </p>
-//             <div class="d-flex flex-column bd-highlight mb-3">
-//                 <div class="p-2 bd-highlight">Flex item 1</div>
-//                 <div class="p-2 bd-highlight">Flex item 2</div>
-//                 <div class="p-2 bd-highlight">Flex item 3</div>
-//                 </div>
-//         </div>
-//         <div class="col-sm border border-dark">
-//         <p style={{fontWeight : "bold"}}> Phone Number </p>
-//             <div class="d-flex flex-column bd-highlight mb-3">
-//                 <div class="p-2 bd-highlight">Flex item 1</div>
-//                 <div class="p-2 bd-highlight">Flex item 2</div>
-//                 <div class="p-2 bd-highlight">Flex item 3</div>
-//                 </div>
-//         </div>
-//         <div class="col-sm border border-dark">
-//             <div class="d-flex flex-column bd-highlight mb-3">
-//                 <div class="p-2 bd-highlight">Flex item 1</div>
-//                 <div class="p-2 bd-highlight">Flex item 2</div>
-//                 <div class="p-2 bd-highlight">Flex item 3</div>
-//                 </div>
-//         </div>
-//     </div>
-//     </div>

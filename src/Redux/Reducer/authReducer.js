@@ -16,7 +16,8 @@ const INITIAL_STATE = {
     loading : false,
     verified : false,
     profilePicture : '',
-    error : ''
+    error : '',
+    status: 0
 }
 
 export const authReducer = (state = INITIAL_STATE, action) => {
