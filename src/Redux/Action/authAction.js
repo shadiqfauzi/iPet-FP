@@ -10,6 +10,7 @@ import {
 
 import Axios from 'axios';
 import { API_URL } from '../../Support/API_URL';
+import Swal from 'sweetalert2'
 
 let token = localStorage.getItem('token')
 
@@ -41,33 +42,12 @@ export const changePicture = (userId) => {
 
 export const Login = (form) => {
     return async (dispatch) => {
-        // async
-        // await bisa dilakukan apabila function return sebuah promise
-        // let res = await Axios.post(`${API_URL}/users/login`, form)
-        // console.log(res)
-        // dispatch({
-        //     type : API_AUTH_START
-        // })
-        // Axios.post(`${API_URL}/users/login`, form)
-        // .then((res) => {
-        //     dispatch({
-        //         type : LOGIN,
-        //         payload : res.data.data
-        //     })
-        //     dispatch({
-        //         type : API_AUTH_SUCCESS
-        //     })
-        // })
-        // .catch((err) => {
-        //     dispatch({
-        //         type : API_AUTH_FAILED
-        //     })
-        // })
         dispatch({
             type : API_AUTH_START
         })
         try{
             let res = await Axios.post(`${API_URL}/users/login`, form)
+            console.log(res)
             let { id, username, email, roleId, token, verified } = res.data.data
             dispatch({
                 type : LOGIN,
@@ -84,6 +64,19 @@ export const Login = (form) => {
                 type : API_AUTH_SUCCESS
             })
         }catch(err){
+            if(err.response){
+                Swal.fire({
+                    icon: 'error',
+                    title: `${err.response.data.status}`,
+                    text: `${err.response.data.message}`,
+                  })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: `Oops...`,
+                    text: 'Something went wrong!',
+                  })
+            }
             dispatch({
                 type : API_AUTH_FAILED
             })
@@ -117,6 +110,19 @@ export const Register = (form) => {
             })
         })
         .catch((err) => {
+            if(err.response){
+                Swal.fire({
+                    icon: 'error',
+                    title: `${err.response.data.status}`,
+                    text: `${err.response.data.message}`,
+                  })
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: `Oops...`,
+                    text: 'Something went wrong!',
+                  })
+            }
             dispatch({
                 type : API_AUTH_FAILED
             })

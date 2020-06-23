@@ -8,6 +8,7 @@ import { fetchTransactionStatus, changeTrxStatus } from '../../Redux/Action'
 import CustomModal from '../../Components/ManageProduct/CustomModal'
 import CustomLoader from '../../Components/CustomLoader'
 import RenderDetail from '../../Components/TransactionStatus/RenderDetail'
+import { API_URL } from '../../Support/API_URL'
 
 const TransactionStatusDetailPage = (props) => {
 	const { transactionId } = useParams()
@@ -20,6 +21,7 @@ const TransactionStatusDetailPage = (props) => {
 	const [approveModal, setApproveModal] = useState(false)
 	const [rejectModal, setRejectModal] = useState(false)
 	const [message, setMessage] = useState('')
+	const [availability, setAvailability] = useState(true)
 
 	const dispatch = useDispatch()
 
@@ -31,8 +33,6 @@ const TransactionStatusDetailPage = (props) => {
 	const handleChangeStatus = (stat) => {
 		dispatch(changeTrxStatus(data[0].transactionId, stat, stat === 'approve' ? data : { message }))
 	}
-
-	console.log(data)
 
 	if (loading) return <CustomLoader />
 	if (error) {
@@ -46,14 +46,14 @@ const TransactionStatusDetailPage = (props) => {
 	return (
 		<React.Fragment>
 			<div>
-				<RenderDetail data={data} modal={modal} setModal={setModal} />
+				<RenderDetail data={data} modal={modal} setModal={setModal} setAvailability={setAvailability} />
 				{data[0] && data[0].pending === 1 && (
 					<div>
 						<div className='mt-3 row justify-content-center'>
 							<p className='font-weight-bold'>Action</p>
 						</div>
 						<div className='row justify-content-around'>
-							<Button onClick={() => setApproveModal(!approveModal)} color='success'>
+							<Button onClick={() => setApproveModal(!approveModal)} color='success' disabled={!availability}>
 								Approve
 							</Button>
 							<Button onClick={() => setRejectModal(!rejectModal)} color='danger'>
@@ -74,11 +74,11 @@ const TransactionStatusDetailPage = (props) => {
 				<div style={{ width: '100%' }}>
 					{data[0] && (
 						<div className='container'>
-							<img style={{ width: '100%' }} src={data[0].paymentImg} alt='Payment' />
+							<img style={{ width: '100%' }} src={API_URL + data[0].paymentImg} alt='Payment' />
 							<div className='row justify-content-center'>
 								<button className='btn btn-link'>
 									{' '}
-									<a href={data[0].paymentImg} target='_blank' rel='noopener noreferrer'>
+									<a href={API_URL + data[0].paymentImg} target='_blank' rel='noopener noreferrer'>
 										View Original
 									</a>
 								</button>

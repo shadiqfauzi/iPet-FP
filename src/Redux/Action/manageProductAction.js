@@ -129,7 +129,7 @@ export const DeleteManageProductData = (id) => {
 					status,
 				},
 			})
-			dispatch(FetchManageProductData())
+			dispatch(FetchManageProductData(0))
 		} catch (err) {
 			dispatch({
 				type: API_MANAGE_PRODUCT_FAILED,

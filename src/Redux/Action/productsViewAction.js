@@ -1,7 +1,7 @@
 import Axios from 'axios'
 import { API_URL } from '../../Support/API_URL'
 
-export const fetchProduct = () => {
+export const FetchProduct = () => {
     return async (dispatch) => {
         dispatch({
             type: 'API_FETCH_DATA_START',
@@ -32,14 +32,13 @@ export const fetchProduct = () => {
     }
 }
 
-export const fetchProductById = (id) => {
+export const FetchProductById = (id) => {
     return async (dispatch) => {
         dispatch({
             type: 'API_FETCH_DATA_START',
         })
         try {
             let url = `${API_URL}/products/getAll/${id}`
-            console.log(url)
             let res = await Axios.get(url)
 
             let { data, status, message } = res.data
@@ -47,7 +46,7 @@ export const fetchProductById = (id) => {
             dispatch({
                 type: 'FETCH_PRODUCTS_ID_SUCCESS',
                 payload: {
-                    data,
+                    data: data[0],
                     status,
                     message,
                 },

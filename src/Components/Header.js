@@ -22,6 +22,7 @@ const Header = (props) => {
 	const toggle = () => setIsOpen(!isOpen)
 
 	const user = useSelector((state) => state.auth.username)
+	const roleId = useSelector((state) => state.auth.roleId)
 
 	const dispatch = useDispatch()
 
@@ -49,7 +50,7 @@ const Header = (props) => {
 							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink>About</NavLink>
+							<NavLink tag={Link} to={'/products'}>Products</NavLink>
 						</NavItem>
 						<NavItem>
 							<NavLink>Service</NavLink>
@@ -59,11 +60,14 @@ const Header = (props) => {
 						</NavItem>
 						<UncontrolledDropdown nav inNavbar>
 							<DropdownToggle nav caret>
-								User
+								{user ? user : 'User'}
 							</DropdownToggle>
 							<DropdownMenu right>
 								{user ? (
 									<React.Fragment>
+										<Link to='/products'>
+											<DropdownItem>Shop Now</DropdownItem>
+										</Link>
 										<Link to='/profile'>
 											<DropdownItem>Profile</DropdownItem>
 										</Link>
@@ -74,11 +78,13 @@ const Header = (props) => {
 											<DropdownItem>Logout</DropdownItem>
 										</Link>
 										<Link to='/cart'>
-											<DropdownItem>cart</DropdownItem>
+											<DropdownItem>Cart</DropdownItem>
 										</Link>
-										<Link to='/admin'>
-											<DropdownItem>Admin Page</DropdownItem>
-										</Link>
+										{roleId === 1 ? (
+											<Link to='/admin'>
+												<DropdownItem>Admin Page</DropdownItem>
+											</Link>
+										) : null}
 									</React.Fragment>
 								) : (
 									<React.Fragment>

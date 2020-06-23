@@ -10,7 +10,9 @@ const MainTableBody = (props) => {
 	return (
 		<tr key={e.productId}>
 			<td>{e.productId}</td>
-			<td>{e.productName}</td>
+			<td>
+				<Link to={`/products/${e.productId}`}>{e.productName}</Link>
+			</td>
 			<td>Rp.{e.price.toLocaleString('id-ID')},00</td>
 			<td>{e.invStock}</td>
 			<td>{e.appStock}</td>

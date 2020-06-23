@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Table, Button } from 'reactstrap';
 import { API_URL } from '../Support/API_URL';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Axios from 'axios';
 
 const ManageUsers = () => {
     const [data, setData] = useState([])
+    // eslint-disable-next-line
     const [isBanned, setIsBanned] = useState (false)
     // console.log(data)
   

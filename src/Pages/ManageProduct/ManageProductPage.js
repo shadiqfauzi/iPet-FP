@@ -78,7 +78,7 @@ const ManageProductPage = (props) => {
 		})
 	}
 
-	if(error){
+	if (error) {
 		Swal.fire({
 			icon: 'error',
 			title: 'Oops...',
@@ -148,6 +148,7 @@ const ManageProductPage = (props) => {
 				modalDelete={modalDelete}
 				deleteProductName={deleteProductName}
 				setModalDelete={setModalDelete}
+				setCurrentPage={setCurrentPage}
 			/>
 		</React.Fragment>
 	)

@@ -5,6 +5,7 @@ import { authReducer } from './authReducer'
 import { transactionStatusReducer } from './transactionStatusReducer'
 import { productPackageReducer } from './productPackageReducer'
 import { reportReducer } from './reportReducer'
+import { cartReducer } from './cartReducer'
 
 export default combineReducers({
 	manageProduct: manageProductReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
 	productPackage: productPackageReducer,
 	transactionStatus: transactionStatusReducer,
 	report: reportReducer,
+	cart: cartReducer,
 })

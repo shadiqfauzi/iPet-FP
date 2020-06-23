@@ -4,7 +4,7 @@ const INITIAL_STATE = {
     error: false,
     message : '',
     status: '',
-    productById: [],
+    productById: {},
 }
 
 export const productViewReducer = (state = INITIAL_STATE, action) => {

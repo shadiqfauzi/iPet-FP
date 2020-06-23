@@ -3,7 +3,7 @@ import { Button } from 'reactstrap'
 import { API_URL } from '../../Support/API_URL'
 
 const RenderDetail = (props) => {
-	const { data, modal, setModal } = props
+	const { data, modal, setModal, setAvailability } = props
 
 	let statusRender = ''
 	let color = ''
@@ -17,6 +17,23 @@ const RenderDetail = (props) => {
 		} else {
 			color = 'success'
 			statusRender = 'Approved'
+		}
+	}
+
+	const renderAvailability = (item) => {
+		if (data[0].pending) {
+			if (item.invStock < item.qty) {
+				setAvailability(false)
+				return (
+					<Button style={{ cursor: 'default' }} color='warning' className='mb-3 mt-2' disabled>
+						Not Enough Stock<br></br> <span>Inventory Stock: {item.invStock}</span>
+					</Button>
+				)
+			} else {
+				return null
+			}
+		} else {
+			return null
 		}
 	}
 
@@ -50,9 +67,13 @@ const RenderDetail = (props) => {
 					</li>
 					<li className='list-group-item'>
 						<p className='font-weight-bold'>Payment Image</p>{' '}
-						<span onClick={() => setModal(!modal)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
-							Open Image
-						</span>
+						{!val.paymentImg ? (
+							<span>No Payment Image</span>
+						) : (
+							<span onClick={() => setModal(!modal)} style={{ cursor: 'pointer', textDecoration: 'underline' }}>
+								Open Image
+							</span>
+						)}
 					</li>
 					<li className='list-group-item'>
 						<p className='font-weight-bold'>Purchased Item(s)</p>
@@ -63,7 +84,8 @@ const RenderDetail = (props) => {
 									<div>
 										Quantity: {item.qty}(@Rp{item.price.toLocaleString('id-ID')},00)
 									</div>
-									<div>SubTotal: Rp{(item.qty*item.price).toLocaleString('id-ID')},00</div>
+									<div>SubTotal: Rp{(item.qty * item.price).toLocaleString('id-ID')},00</div>
+									{renderAvailability(item)}
 								</div>
 								{index !== val.cart.length - 1 && <hr className='m-0'></hr>}
 							</React.Fragment>

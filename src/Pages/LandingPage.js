@@ -15,8 +15,8 @@ class LandingPage extends Component {
         return (
             <div>
                 <div className='Parallax'>
-                    <h1 className='slogan'>WELCOME TO IPET</h1>
-                    <h4 className='slogan2'>WE ARE GROUP ... ... .. </h4>
+                    <h1 className='slogan'>Welcome to iPet</h1>
+                    <h4 className='slogan2'>A Place For All Your Pet's Needs</h4>
                     <div className='buleud' style={{ marginTop: '5%' }}>
                         <svg
                             className='bi bi-chevron-double-down'
@@ -148,7 +148,7 @@ class LandingPage extends Component {
                                                 with cleaning supplies to tackle
                                                 the toughest odors and stains.
                                                 healthy and safe so you can play
-                                                with your best friend any time.
+                                                with your best friend.
                                             </CardText>
                                         </CardBody>
                                     </Card>

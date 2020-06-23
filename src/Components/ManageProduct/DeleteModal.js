@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux'
 import { DeleteManageProductData } from '../../Redux/Action'
 
 const DeleteModal = (props) => {
-	const { toggleModalDelete, modalDelete, deleteProductName, setModalDelete } = props
+	const { toggleModalDelete, modalDelete, deleteProductName, setModalDelete, setCurrentPage } = props
 
 	const [modalDeleteSuccess, setModalDeleteSuccess] = useState(false)
 	const toggleModalDeleteSuccess = () => setModalDeleteSuccess(!modalDeleteSuccess)
@@ -17,6 +17,7 @@ const DeleteModal = (props) => {
 	const handleDelete = (id) => {
 		dispatch(DeleteManageProductData(id))
 		setModalDelete(false)
+		setCurrentPage(0)
 	}
 
 	return (

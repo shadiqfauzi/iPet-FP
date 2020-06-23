@@ -108,15 +108,16 @@ const AdminLandingPage = (props) => {
 				<div style={{ height: '100%' }} className=' d-flex flex-column justify-content-between'>
 					<Select options={monthOptions} onChange={(e) => setSelectMonth(e)} value={selectMonth} />
 					{data.revenue && (
-						<div className='shadow pl-3 pt-2' style={{ height: '40%' }}>
-							<h3 className='text-center'>Revenue</h3>
+						<div className='shadow p-2' style={{ height: '40%' }}>
+							<h5 className='text-center m-0'>Revenue</h5>
 							<p style={{ fontSize: '1.5em', margin: 0 }}>
 								<strong>{moment(`${data.reportDate.year}${data.reportDate.month}`, 'YYYYM').format('MMMM YYYY')}</strong>:
 							</p>
-							<p>
+							<p className='m-0'>
 								Rp{data.revenue.currentRevenue.toLocaleString('id-ID')},00{' '}
 								{data.revenue.currentRevenue && countFloat(data.revenue.currentRevenue, data.revenue.prevRevenue)}
 							</p>
+							<hr className='m-0'></hr>
 							<p style={{ fontSize: '0.8em', margin: 0 }}>
 								<strong>{moment(`${data.reportDate.year}${data.reportDate.month - 1}`, 'YYYYM').format('MMMM YYYY')}</strong>:
 							</p>
@@ -124,14 +125,15 @@ const AdminLandingPage = (props) => {
 						</div>
 					)}
 					{data.sold && (
-						<div className='shadow pl-3 pt-2' style={{ height: '40%' }}>
-							<h3 className='text-center'>Items sold</h3>
+						<div className='shadow p-2' style={{ height: '40%' }}>
+							<h5 className='text-center m-0'>Items sold</h5>
 							<p style={{ fontSize: '1.5em', margin: 0 }}>
 								<strong>{moment(`${data.reportDate.year}${data.reportDate.month}`, 'YYYYM').format('MMMM YYYY')}</strong>:
 							</p>
-							<p>
+							<p className='m-0'>
 								{data.sold.currentSold} units {data.sold.currentSold && countFloat(data.sold.currentSold, data.sold.prevSold)}
 							</p>
+							<hr className='m-0'></hr>
 							<p style={{ fontSize: '0.8em', margin: 0 }}>
 								<strong>{moment(`${data.reportDate.year}${data.reportDate.month - 1}`, 'YYYYM').format('MMMM YYYY')}</strong>:
 							</p>

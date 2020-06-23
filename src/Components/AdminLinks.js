@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import Axios from 'axios'
 import { API_URL } from '../Support/API_URL'
+import { FaChartLine, FaShoppingCart, FaFileInvoiceDollar } from 'react-icons/fa'
 
 const AdminLinks = (props) => {
 	const { status } = props
@@ -33,12 +34,12 @@ const AdminLinks = (props) => {
 		<ul className='list-group list-group-flush'>
 			<Link to={'/admin'}>
 				<li style={{ cursor: 'pointer' }} className={`list-group-item ${location.pathname === '/admin' && 'list-group-item-primary'}`}>
-					Report Overview
+				<FaChartLine /> Report Overview
 				</li>
 			</Link>
 			<Link to={'/admin/manage-product'}>
 				<li style={{ cursor: 'pointer' }} className={`list-group-item ${manageProduct && 'list-group-item-primary'}`}>
-					Manage Product
+				<FaShoppingCart /> Manage Product
 				</li>
 			</Link>
 			{manageProduct && (
@@ -72,7 +73,7 @@ const AdminLinks = (props) => {
 			)}
 			<Link to={'/admin/transaction-status'}>
 				<li className={`list-group-item ${transactionStatus && 'list-group-item-primary'}`}>
-					Transaction Status {totalPending ? <span className='badge badge-info ml-2'>{totalPending}</span> : null}
+					<FaFileInvoiceDollar /> Transaction Status {totalPending ? <span className='badge badge-info ml-2'>{totalPending}</span> : null}
 				</li>
 			</Link>
 			{transactionStatus && (

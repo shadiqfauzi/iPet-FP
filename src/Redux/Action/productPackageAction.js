@@ -18,7 +18,6 @@ export const FetchProductPackage = (id) => {
 		try {
 			const res = await Axios.get(`${API_URL}/manage-product/product-package`)
 			let { data, status, message } = res.data
-			console.log(data)
 			if (id) {
 				data = data.filter((data) => {
 					return data.id === id
@@ -51,17 +50,10 @@ export const SearchProduct = (query) => {
 		})
 		try {
 			const res = await Axios.get(`${API_URL}/manage-product/search-product?search=${query}`)
-			if (res.data.data.length === 0) {
-				dispatch({
-					type: SEARCH_PRODUCT,
-					payload: { notFound: true },
-				})
-			} else {
-				dispatch({
-					type: SEARCH_PRODUCT,
-					payload: res.data.data,
-				})
-			}
+			dispatch({
+				type: SEARCH_PRODUCT,
+				payload: res.data.data,
+			})
 		} catch (err) {
 			dispatch({
 				type: API_PRODUCT_PACKAGE_FAILED,
@@ -108,12 +100,21 @@ export const EditPackage = (data) => {
 		})
 		try {
 			let res = await Axios.post(`${API_URL}/manage-product/edit-package`, data)
-			const { message, status } = res.data
+			let { message, status } = res.data
 			dispatch({
 				type: EDIT_PACKAGE,
 				payload: {
 					message,
 					status,
+				},
+			})
+			const result = await Axios.get(`${API_URL}/manage-product/product-package`)
+			dispatch({
+				type: API_PRODUCT_PACKAGE_SUCCESS,
+				payload: {
+					data: result.data.data,
+					status: result.data.status,
+					message: result.data.message,
 				},
 			})
 		} catch (err) {
